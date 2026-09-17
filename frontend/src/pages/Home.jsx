@@ -11,6 +11,19 @@ export default function Home() {
   const [mode, setMode] = useState(null);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [socketReady, setSocketReady] = useState(false);
+
+  useEffect(() => {
+    function onConnect() { setSocketReady(true); }
+    function onDisconnect() { setSocketReady(false); }
+    socket.on("connect", onConnect);
+    socket.on("disconnect", onDisconnect);
+    if (socket.connected) setSocketReady(true);
+    return () => {
+      socket.off("connect", onConnect);
+      socket.off("disconnect", onDisconnect);
+    };
+  }, [socket]);
 
   useEffect(() => {
     function onSyncState({ roomCode: code }) {
@@ -63,6 +76,9 @@ export default function Home() {
     <div className="home">
       <h1>🎬 YT Watch Party</h1>
       <p className="subtitle">Watch YouTube videos in sync with friends</p>
+      {!socketReady && (
+        <p className="server-waking">⏳ Server starting up, please wait... (can take ~30s on first load)</p>
+      )}
 
       {!mode ? (
         <div className="btn-group">

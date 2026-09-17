@@ -60,6 +60,8 @@ input:focus { outline: none; border-color: #ff0000; }
 
 .btn-group { display: flex; gap: 10px; flex-wrap: wrap; }
 .error { color: #ff6b6b; font-size: 13px; }
+.server-waking { color: #f90; font-size: 13px; text-align: center; animation: pulse 1.5s infinite; }
+@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
 
 /* ── Room ── */
 .room { display: flex; flex-direction: column; height: 100vh; }

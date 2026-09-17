@@ -8,7 +8,11 @@ export function SocketProvider({ children }) {
 
   if (!socketRef.current) {
     socketRef.current = io(import.meta.env.VITE_BACKEND_URL || "http://localhost:5000", {
-      autoConnect: true,
+      transports: ["websocket", "polling"],
+      reconnection: true,
+      reconnectionAttempts: 10,
+      reconnectionDelay: 2000,
+      timeout: 60000, // Render free tier can take up to 50s to wake up
     });
   }
 
