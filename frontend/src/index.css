@@ -1,0 +1,189 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: #0f0f0f;
+  color: #e8e8e8;
+  min-height: 100vh;
+}
+
+button {
+  cursor: pointer;
+  padding: 8px 18px;
+  border: none;
+  border-radius: 6px;
+  background: #ff0000;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  transition: background 0.2s;
+}
+button:hover { background: #cc0000; }
+button.secondary { background: #333; }
+button.secondary:hover { background: #444; }
+
+input {
+  padding: 10px 14px;
+  border-radius: 6px;
+  border: 1px solid #333;
+  background: #1a1a1a;
+  color: #e8e8e8;
+  font-size: 14px;
+  width: 100%;
+}
+input:focus { outline: none; border-color: #ff0000; }
+
+/* ── Home ── */
+.home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  gap: 20px;
+  padding: 24px;
+}
+.home h1 { font-size: 2.4rem; }
+.home .subtitle { color: #888; font-size: 1rem; }
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  max-width: 360px;
+  background: #1a1a1a;
+  padding: 28px;
+  border-radius: 12px;
+}
+.form h2 { font-size: 1.2rem; margin-bottom: 4px; }
+
+.btn-group { display: flex; gap: 10px; flex-wrap: wrap; }
+.error { color: #ff6b6b; font-size: 13px; }
+
+/* ── Room ── */
+.room { display: flex; flex-direction: column; height: 100vh; }
+
+.room-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 10px 20px;
+  background: #1a1a1a;
+  border-bottom: 1px solid #2a2a2a;
+}
+.room-code, .my-role { font-size: 14px; color: #aaa; }
+.room-code strong, .my-role strong { color: #fff; }
+.leave-btn { margin-left: auto; background: #333; }
+
+.room-body {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+.player-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  gap: 12px;
+  overflow-y: auto;
+}
+
+.yt-player {
+  width: 100%;
+  aspect-ratio: 16/9;
+  background: #000;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.yt-player iframe { width: 100%; height: 100%; }
+
+.no-video { color: #666; font-size: 14px; text-align: center; padding: 20px 0; }
+
+/* ── Controls ── */
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  background: #1a1a1a;
+  padding: 12px 16px;
+  border-radius: 8px;
+}
+.seek-form, .video-form { display: flex; gap: 8px; flex: 1; min-width: 200px; }
+.seek-form input { max-width: 130px; }
+.playback-btns { display: flex; gap: 8px; }
+
+/* ── Participants ── */
+.participants {
+  width: 240px;
+  min-width: 200px;
+  background: #141414;
+  border-left: 1px solid #2a2a2a;
+  padding: 16px;
+  overflow-y: auto;
+}
+.participants h3 { font-size: 14px; color: #aaa; margin-bottom: 12px; }
+.participants ul { list-style: none; display: flex; flex-direction: column; }
+.participants li {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 13px;
+  padding: 8px 0;
+  border-bottom: 1px solid #222;
+}
+.participants li:last-child { border-bottom: none; }
+.participants li.me .pname { color: #ff6b6b; }
+.p-top { display: flex; align-items: center; gap: 6px; }
+.pname { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 500; }
+.badge {
+  font-size: 10px;
+  padding: 2px 7px;
+  border-radius: 4px;
+  font-weight: 700;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.badge.host { background: #ff0000; color: #fff; }
+.badge.moderator { background: #f90; color: #000; }
+.badge.participant { background: #2a2a2a; color: #888; }
+.actions { display: flex; gap: 5px; flex-wrap: wrap; }
+.mod-btn {
+  padding: 4px 10px;
+  font-size: 11px;
+  font-weight: 600;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+}
+.mod-btn.promote { background: #1a3a1a; color: #4caf50; }
+.mod-btn.promote:hover { background: #4caf50; color: #fff; }
+.mod-btn.demote { background: #3a2a00; color: #f90; }
+.mod-btn.demote:hover { background: #f90; color: #000; }
+.mod-btn.kick { background: #2a1a1a; color: #f44; }
+.mod-btn.kick:hover { background: #c00; color: #fff; }
+
+/* ── Notification ── */
+.notification {
+  position: fixed;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #222;
+  border: 1px solid #444;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  z-index: 999;
+  pointer-events: none;
+}
+
+/* ── Responsive ── */
+@media (max-width: 640px) {
+  .room-body { flex-direction: column; }
+  .participants { width: 100%; border-left: none; border-top: 1px solid #2a2a2a; }
+}
